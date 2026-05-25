@@ -77,29 +77,31 @@
     <canvas id="canvas" height="1080px" width="920px"></canvas>
 
     <script>
-        //codigo JavaScript
         let ctx = canvas.getContext("2d")
-        ctx.moveto(0,0)
-        ctx.lineTo(920, 1080)
-        ctx.stroke()
-        var desenho=false;
-        canvas.addEventListener("mousedown", (eventoMouse)=>{
-            ctx.moveTo(eventoMouse.offsetX, eventoMouse.offsetY)
-            desenho=true;
-        });
+        var mouseEvent;
+        desenhando = false;
+        ctx.moveTo(0,0)
+        ctx.lineTo(100,100)
+        ctx.stroke();
 
+        canvas.addEventListener("mousedown", (evento)=>{
+            desenhando = true;
+            ctx.moveTo(evento.offsetX, evento.offsetY)
+        })
         canvas.addEventListener("mouseup", ()=>{
-            desenho = false;
-        });
-        
-        canvas.addEventListener("mousemove", (eventoMouse)=> {
-            if(desenho){
-                ctx.lineTo(eventoMouse.offsetX, eventoMouse.offsetY)
-                ctx.stroke()
-                }
-            
-        }
-            );
+            desenhando =false
+        })
+
+
+        canvas.addEventListener("mousemove", (evento)=>{
+            mouseEvent=evento
+            if(desenhando){
+                ctx.lineTo(evento.offsetX,evento.offsetY)
+                ctx.stroke();
+            }
+        })
+
+
     </script>
     </body>
 </html>
