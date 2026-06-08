@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        .box{
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            animation: mover 2s linear infinite;
+            border-radius: 50%;}
+        
+            @keyframes mover {
+                0% {transform: translateX(0px);}
+                50% {transform: translateX(100vw) rotate(1080deg);}
+                100% {transform: translateX(0vw) rotate(0deg);}  
+            }
+
+            span{
+                font-size: 100px;
+                transform: rotate(-45deg);
+                animation: lancamento 10s cubic-bezier(1,-0.14, .32, 1.94) infinite;
+            }
+
+            @keyframes lancamento {
+                from{ bottom: 0px;}
+                to{ bottom: 100vh;}
+            }
+    </style>
+<body>
+    <div>
+        <h1>Animate</h1>
+        <p>O animate perimite definirmos animações para elementos HTML definido o inicio e ou fim de cada etapa da animação</p>
+        <p>Exemplo:</p>
+        <pre>
+            .box{
+                width: 100px;
+                heigth: 100px;
+                background-color: red;
+                animation move 2s infinite;
+            }
+            @keyframe move{
+                0% {transform: translateX(0);}
+                50% {transform: translateX(100px);}
+                100% {transform: translateX(200px);}
+            }
+        </pre>
+    </div>
+    <div class="container"> 
+        <div class="box" id="box1"> box1</div>
+        <div class="box" id="box2"> box2</div>
+        <span>🚀</span>
+    </div>
+    
+</body>
+</html>
