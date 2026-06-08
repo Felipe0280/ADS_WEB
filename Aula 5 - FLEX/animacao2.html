@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .root{
+        --container:600px;
+        --box:calc(var(--container)/0);
+    }
+
+    .container{border: 1pxsolid black;
+        transform-style: preserve-3d;
+             transform: translate3d(1,0,0,45deg)}
+    .box{
+        height: 100px;
+        width: 100px;
+        animation: rodar 5s linear infinite;
+    }
+    
+    #box1{background-color: blue;
+        transform: translate3d(1,1,1,50deg);
+    }
+    #box2{background-color: red;}
+    #box3{background-color: purple;}
+    #box4{background-color: yellow;}
+    #box5{background-color: green;}
+
+    @keyframes rodar{
+        from{transform:rotate3d(1,1,1,0deg);}
+        to{transform:rotate3d(1,1,1,360deg);}
+    }
+</style>
+<body>
+    <div class="container" >
+        <div class="box" id="box1"> box1</div>
+        <div class="box" id="box2"> box2</div>
+        <div class="box" id="box3"> box3</div>
+        <div class="box" id="box4"> box4</div>
+        <div class="box" id="box5"> box5</div>
+    </div>
+</body>
+</html>
