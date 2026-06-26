@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="texto"> </label>
+    <input type="text" id="texto">
+    <button>Salvar</button>
+    <div class="text"></div>
+
+    <script>
+        const input = document.getElementById("texto");
+        const textDiv = document.querySelector(".text");
+        const button = document.querySelector("button");
+        let textos = []; //array
+        
+        button.addEventListener("click", ()=>{
+            const texto = input.value;
+            textDiv.textContent = texto;
+
+            textos.push(texto);
+
+            //converter array em json
+            const textosJSON = JSON.stringify(textos);
+            localStorage.setItem("textos", textosJSON);//salvando array/JSON no localstorage
+        })
+
+        if(localStorage.getItem("textos")){
+            textDiv.textContent = JSON.parse(localStorage.getItem("textos"));
+        }
+    </script>
+</body>
+</html>
