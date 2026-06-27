@@ -1,0 +1,6 @@
+O que é uma regra CSS?
+R: É uma regra de estilização de elementos do html
+exemplo: 
+    .box{
+        background-color: red;
+    }

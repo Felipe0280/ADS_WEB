@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Barco</title>
+  <style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    .ceu {
+        background: linear-gradient(to top, #77b6dd, #ffffff);
+        position: relative;
+        width: 100%;
+        height: 70%;
+        overflow: hidden;
+    }
+
+    .nuvem {
+        position: absolute;
+        top: 50px;
+        left: -200px;
+        width: 170px;
+        height: 110px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 40px 0 white, 20px -20px white, 60px -10px white;
+        animation: moverNuvem 60s linear infinite;
+    }
+
+    @keyframes moverNuvem {
+        0% { left: -200px; }
+        100% { left: 110%; }
+    }
+
+    .nuvemInversa {
+        position: absolute;
+        top: 80px;
+        left: -200px;
+        width: 120px;
+        height: 60px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 40px 0 white, 20px -20px white, 60px -10px white;
+        animation: moverNuvemInversa 100s linear infinite;
+    }
+
+    @keyframes moverNuvemInversa {
+        0% { left: 105%; }
+        100% { left: -110%; }
+    }
+
+    .mar {
+        position: relative;
+        width: 100%;
+        height: 30%;
+        background: blue;
+        overflow: hidden;
+    }
+
+    .mar::before,
+    .mar::after {
+        content: "";
+        position: absolute;
+        width: 200%;
+        height: 100%;
+        background: radial-gradient(circle at 50% 50%, #ffffff33 20%, transparent 70%);
+        opacity: 0.5;
+    }
+
+    .mar::after {
+        animation-delay: 2s;
+    }
+
+    .onda{
+        position: absolute;
+        width: 160px;
+        height: 120px;
+        bottom: 150px;
+        background-image: image-set("imagens/onda.png");
+        animation: balancar 4s ease-in-out infinite alternate,onda 30s linear infinite;
+        z-index: 20;
+        
+    }
+
+    .onda2{
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        bottom: 40px;
+        background-image: image-set("imagens/onda.png");
+        animation: balancar 4s ease-in-out infinite alternate,onda 15s linear infinite;
+        z-index: 20;
+        
+    }
+
+    .ondaInv{
+        position: absolute;
+        width: 150px;
+        height: 130px;
+        bottom: 90px;
+        background-image: image-set("imagens/ondaInversa.png");
+        animation: balancar 4s ease-in-out infinite alternate,ondaInv 25s linear infinite;
+        z-index: 20;
+    }
+
+    @keyframes onda {
+        0% { left: -200px; }
+        100% { left: 110%; }
+    }
+
+     @keyframes ondaInv {
+        0% { left: 110%; }
+        100% { left: -200px; }
+    }
+
+    .barco {
+        position: absolute;
+        bottom: -2%;
+        left: -100px;
+        width: 110px;
+        height: 110px;
+        background-image: image-set("imagens/Barco.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: balancar 2s ease-in-out infinite alternate,moverBarco 40s linear infinite;
+        z-index: 2;
+    }
+
+    @keyframes balancar {
+        0% { transform: rotate(-3deg); }
+        100% { transform: rotate(3deg); }
+    }
+
+    @keyframes moverBarco {
+        0% { left: -100px; }
+        100% { left: 110%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ceu">
+    <div class="nuvem">
+        <div class="nuvem"></div>
+    </div>
+    <div class="nuvemInversa">
+        <div class="nuvemInversa"></div>
+    </div>
+    <div class="barco"></div>
+  </div>
+  <div class="mar">
+    <div class="onda"></div>
+    <div class="onda2"></div>
+    <div class="ondaInv"></div>
+  </div>
+</body>
+</html>

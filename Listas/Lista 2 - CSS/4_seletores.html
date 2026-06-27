@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>   
+   <title>Exemplo especificidade de seletores</title>
+   <style>
+      /*regra 1*/ li{color:red;}
+      /*regra 2*/ .churras{color:green;}
+      /*regra 3*/ .fruta{color:gray}
+      /*regra 4*/ li+li.churras{color: black;}
+      /*regra 5*/ .churras[draggable="true"]{color: magenta;}
+      /*regra 6*/ #lip1,#lip2,#lip3{color:blue}
+      /*regra 7*/ #lip3.fruta{color:orange}
+      /*regra 8*/ ol>li.churras#lip5{color:purple}
+   </style>
+</head>
+<body>   
+   <ol>
+   <!--item 1--> <li id="lip0">Abacaxi</li>
+   <!--item 2--> <li           class="fruta">Melão</li>
+   <!--item 3--> <li id="lip2" class="fruta">Pera</li>
+   <!--item 4--> <li id="lip3" class="fruta">Uva</li>
+   <!--item 5--> <li id="lip4" class="fruta">Maçã</li>
+   <!--item 6--> <li           class="churras">Carne</li>
+   <!--item 7--> <li           class="churras">Linguiça</li>
+   <!--item 8--> <li id="lip7" class="churras" draggable="true">Pão de alho</li>
+   </ol>   
+   <p>
+      <b>Itens: </b> <br> <br>
+      <b>Item 1:</b> Fica vermelho, por causa da regra 1 que é aplicado para itens da lista <br> 
+      <b>Item 2 e Item 5:</b> Fica cinza, por causa da regra 3 que é aplicado para itens com a class = frutas<br>
+      <b>Item 3:</b> Fica azul, por conta da regra 6 que utiliza seu id (lip2) para aplicar a cor azul <br> 
+      <b>Item 4:</b> Fica laranja, por causa da regra 7 que utiliza seu id (lip3) e sua classe (fruta) para ser aplicado<br>
+      <b>Item 6 e Item 7:</b> Fica preto, por conta da regra 4 que localiza o item da lista que tem classe = churras depois de um item da lista qualquer<br>
+      <b>Item 8:</b> Fica da cor magenta, por cause da regra 5 que busca o item com classe churras e draggable true aplicando a cor magenta <br><br>
+      <b>Observações:</b><br>
+      <b>1. </b>A regra 8 não é atribuido a nenhum elemento pela falta do id = lip5 <br>
+      <b>2. </b>A ordem das regras a serem aplicadas importam, por esse motivo somente um fica na cor vermelha mesmo todos os elementos sendo itens da lista
+   </p>
+</body>
+</html>

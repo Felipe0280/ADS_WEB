@@ -1,0 +1,6 @@
+Formas de chamar CSS em um HTML:
+    1.CSS Externo: Traz as regras CSS definidas em um arquivo a parte; É selecionada na parte link do HTML
+
+    2.CSS Incorporado: Feita no arquivo HTML, utilizando a tag Style no head;
+
+    3.CSS Inline: Feita diretamento no elemento, usand a tag style dentro da criação do elemento;
