@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Buscar Filmes</h1>
+    <label for="busca"></label>
+    <input type="text" id="busca">
+    <button id="button">Buscar</button>
+
+    <div class="resultado"></div>
+
+    <script>
+        //f77bfada
+        const apikey = "f77bfada";
+        button.addEventListener("click",()=>{
+            let strBusca = document.getElementById("busca").value;
+            fetch(`http://www.omdbapi.com/?apikey=${apikey}&s=${strBusca}`)
+            .then((result)=>{
+                return result.json();
+            }).then((data)=>{
+                const filmes = data.Search;
+                exibirFilme(filmes);
+            })
+        })
+
+        function exibirFilme(filmes){
+            let htmlfilme = "";
+            filmes.forEach((filme) => {
+                htmlfilme+= `<div class="filme">
+                    <h2>${filme.Title}</h2>
+                    <img src="${filme.Poster}" alt="${filme.Title}">
+                    <p>${filme.Year}</p>
+                        </div>`;
+            })
+                
+            divResultado = document.querySelector(".resultado");
+            divResultado.innerHTML = htmlfilme;
+        }
+    </script>
+</body>
+</html>
