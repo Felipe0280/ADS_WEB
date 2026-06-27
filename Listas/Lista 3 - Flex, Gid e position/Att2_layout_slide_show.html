@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      display: flex;
+      align-items: center;
+    }
+
+    .foto {
+      flex: 1;
+      height: 300px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      transition: flex 0.3s;
+    }
+
+    .foto:hover {
+      flex: 3;
+    }
+
+    .foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="foto">
+      <img src="imagens/bigPlato.jpeg" alt="">
+    </div>
+    <div class="foto">
+      <img src="imagens/hobbes.jpeg" alt="">
+    </div>
+    <div class="foto">
+      <img src="imagens/Nietzsche.jpg" alt="">
+    </div>
+    <div class="foto">
+      <img src="imagens/maquiavel.jpg" alt="">
+    </div>
+  </div>
+</body>
+</html>

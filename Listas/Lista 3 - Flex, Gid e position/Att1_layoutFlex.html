@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            flex-flow: row wrap;
+        }
+        #box1{
+            background-color: black;
+            width: 100vw;
+            height: 120px;
+            display: flex;
+            align-items: end;
+        }
+        #box2{
+            background-color: orange;
+            width: 100px;
+            height: 90vh;
+        }
+        .container2{
+            display: flex;
+            width: 90vw;
+            height: 90vh;
+            flex-flow: column wrap
+        }
+        #box3{
+            background-color: blue;
+            width: 90vw;
+            height: 20vh;
+        }
+        #box4{
+            background-color: purple;
+            width: 90vw;
+            height: 50vh;
+        }
+        #box5{
+            background-color: cadetblue;
+            width: 90vw;
+            height: 20vh;
+        }
+
+        .circulo{
+            background-color: aqua;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .quadrado{
+            display: flex;
+            width: 200px;
+            height: 60px;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id="box1">
+            <div class="quadrado">
+                <div class="circulo"></div>
+                <div class="circulo"></div>
+                <div class="circulo"></div>
+            </div>  
+        </div>
+        <div class="box" id="box2">navegação</div>
+        <div class="container2">
+            <div class="box" id="box3">cabeçalho</div>
+            <div class="box" id="box4">conteúdo</div>
+            <div class="box" id="box5">rodapé</div>
+        </div>
+        
+    </div>
+</body>
+</html>
