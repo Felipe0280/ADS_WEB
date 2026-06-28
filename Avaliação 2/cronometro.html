@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cronometro</title>
     <style>
         body{
             margin: 0;
             padding: 0;
             height: 100svh;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr;
         }
-        #tela, body{
-            border: 1px solid red;
+        #tela{
+            grid-column: 1/5;
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: rgb(90, 90, 88);
         }
         #tela{
             flex-direction: column;
         }
         #paradas{
-            border: 1px solid red;
-            width: 400px;
-            height: 90vh;
+            grid-column: 5/7;
             display: flex;
             flex-direction: column;
+             font-size: 20px;
         }
         #ph1{
             align-self: center; 
@@ -36,6 +39,7 @@
             line-height: 200px;
             text-align: center;
             font-size: 50px;
+            background-color: rgb(140, 197, 247);
         }
         .botao{
             width: 80px;
@@ -69,18 +73,23 @@
 
         const rodando = true;
         let iniciou = false;
-
+        let pausadoEm = null;
+        let cronometro = 0;
         bComecar.addEventListener("click", ()=>{
+            
             if(bComecar.innerHTML === "Começar"){
                 iniciou = true;
-                let inicio = new Date();
+                let inicio = new Date()- pausadoEm;
                 intervalo = setInterval(()=>{
-                        let tempo = new Date();
-                        let cronometro = (tempo - inicio);
-                        
+                    let tempo = new Date();
+                    if(pausadoEm === null){
+                        cronometro = (tempo - inicio);
+                    }else{
+                        cronometro = (tempo - inicio);
+                    }   
                         let segundos = Math.floor((cronometro / 1000) % 60);
                         let minutos = Math.floor((cronometro / (1000 * 60)) % 60);
-                        let horas = Math.floor((cronometro / (1000 * 60 * 60)));
+                        let horas = Math.floor((cronometro / (1000 * 3600)));
 
                         let h = String(horas).padStart(2, '0');
                         let m = String(minutos).padStart(2, '0');
@@ -90,6 +99,7 @@
                     }, 1);
                     bComecar.innerHTML = "Parar";
              }else{
+                pausadoEm = cronometro;
                 clearInterval(intervalo);
                 bComecar.innerHTML = "Começar";
                 rodando = false;
@@ -110,6 +120,8 @@
             if(bComecar.innerHTML === "Começar" && iniciou){
                 ol.replaceChildren();
                 document.querySelector("#crono").innerHTML = "00:00:00";
+                pausadoEm = null;
+                iniciou = false;
             }
             
         })
