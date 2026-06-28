@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco de Notas</title>
+</head>
+<body>
+    <h1>Bloco de Notas</h1>
+    <h2>Nova Nota</h2>
+
+    <p>Título:</p>
+    <input type="text" id="titulo" placeholder="Digite o título da nota"><br><br>
+
+    <p>Conteúdo:</p>
+    <textarea id="texto" rows="8" cols="50" placeholder="Digite sua nota aqui"></textarea><br><br>
+
+    <button id="salvar">Salvar Nota</button>
+    <button id="excluir">Excluir</button>
+
+    <h2>Notas Salvas</h2>
+    <ol id="listaNotas"></ol>
+
+    <script>
+        let bSalvar = document.getElementById("salvar");
+        let bExcluir = document.getElementById("excluir");
+        let titulo = document.getElementById("titulo");
+        let texto = document.getElementById("texto");
+        let lista = document.getElementById("listaNotas");
+        let textos = JSON.parse(localStorage.getItem("Notas")) || [];
+        let nota = {titulo: "", nota: ""};
+        let iSelecionado = -1;
+        let notaExistente = false;
+        
+        function listarNotas(){
+            lista.innerHTML = "";
+            for(let i=0;i<textos.length;i++){
+                let li = document.createElement("li");
+                li.innerHTML = textos[i].titulo;
+                li.style.cursor = "pointer";
+                li.addEventListener("click",()=>{
+                    iSelecionado = i;
+                    titulo.value = textos[i].titulo;
+                    texto.value = textos[i].nota;
+                    notaExistente = true;
+                });
+                lista.appendChild(li);
+            }
+        }
+        listarNotas();
+
+        bSalvar.addEventListener("click", ()=>{
+            if(notaExistente){
+                textos[iSelecionado].titulo = titulo.value;
+                textos[iSelecionado].nota = texto.value;
+                localStorage.setItem("Notas", JSON.stringify(textos ));
+                notaExistente = false;
+
+                document.getElementById("titulo").value = "";
+                document.getElementById("texto").value = "";
+                listarNotas();
+            }else{
+                nota = {titulo: titulo.value, nota: texto.value};
+                textos.push(nota);
+                let txtJSON = JSON.stringify(textos);
+                localStorage.setItem("Notas", JSON.stringify(textos));
+                
+                document.getElementById("titulo").value = "";
+                document.getElementById("texto").value = "";
+                listarNotas();
+            }
+        });
+
+        bExcluir.addEventListener("click", ()=>{
+            let r = confirm("Deseja realmente excluir esta nota?");
+            if(r){
+                textos.splice(iSelecionado,1);
+                localStorage.setItem("Notas",JSON.stringify(textos));
+                listarNotas();
+                titulo.value="";
+                texto.value="";
+            }
+        });
+
+    </script>
+</body>
+</html>

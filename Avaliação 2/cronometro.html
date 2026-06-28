@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100svh;
+        }
+        #tela, body{
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #tela{
+            flex-direction: column;
+        }
+        #paradas{
+            border: 1px solid red;
+            width: 400px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #ph1{
+            align-self: center; 
+        }
+        #crono{
+            border: 1px solid black;
+            width: 300px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            font-size: 50px;
+        }
+        .botao{
+            width: 80px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="tela">
+        <div id="crono">00:00:00</div>
+        <p></p>
+        <div class="botoes">
+            <button class="botao" id="botaoC">Começar</button>
+            <button class="botao" id="botaoP">Pausar</button>
+            <button class="botao" id="botaoZ">Zerar</button>
+        </div>
+    </div>
+    <div id="paradas">
+        <h1 id="ph1">Paradas</h1>
+        <ol id="listaParadas">
+
+        </ol>
+    </div>
+    
+    <script>
+        let bComecar = document.querySelector("#botaoC");
+        let bPausar = document.querySelector("#botaoP");
+        let bZerar = document.querySelector("#botaoZ");
+        let ol = document.getElementById("listaParadas");
+        let intervalo = null; 
+
+        const rodando = true;
+        let iniciou = false;
+
+        bComecar.addEventListener("click", ()=>{
+            if(bComecar.innerHTML === "Começar"){
+                iniciou = true;
+                let inicio = new Date();
+                intervalo = setInterval(()=>{
+                        let tempo = new Date();
+                        let cronometro = (tempo - inicio);
+                        
+                        let segundos = Math.floor((cronometro / 1000) % 60);
+                        let minutos = Math.floor((cronometro / (1000 * 60)) % 60);
+                        let horas = Math.floor((cronometro / (1000 * 60 * 60)));
+
+                        let h = String(horas).padStart(2, '0');
+                        let m = String(minutos).padStart(2, '0');
+                        let s = String(segundos).padStart(2, '0');
+
+                        document.getElementById("crono").innerHTML = `${h}:${m}:${s}`;
+                    }, 1);
+                    bComecar.innerHTML = "Parar";
+             }else{
+                clearInterval(intervalo);
+                bComecar.innerHTML = "Começar";
+                rodando = false;
+            }
+        });
+        
+        bPausar.addEventListener("click", ()=>{
+            if(rodando && iniciou){
+                let pausa = document.querySelector("#crono").innerHTML;
+                let li = document.createElement("li");
+                ol = document.getElementById("listaParadas");
+                li.innerHTML = pausa;
+                ol.appendChild(li);
+            }
+        });
+        
+        bZerar.addEventListener("click", ()=>{
+            if(bComecar.innerHTML === "Começar" && iniciou){
+                ol.replaceChildren();
+                document.querySelector("#crono").innerHTML = "00:00:00";
+            }
+            
+        })
+    </script>
+</body>
+</html>
