@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenho em Canvas</title>
+</head>
+<body>
+    <h1>Desenho em Canvas</h1>
+    <canvas id="canvas" width="400px" height="300px" style="border:1px solid #000;"></canvas>
+
+    <script>
+        let ctx = canvas.getContext("2d")
+        var mouseEvent;
+        desenhando = false;
+        ctx.moveTo(0,0)
+        ctx.stroke();
+
+        canvas.addEventListener("mousedown", (evento)=>{
+            desenhando = true;
+            ctx.moveTo(evento.offsetX, evento.offsetY)
+        })
+        canvas.addEventListener("mouseup", ()=>{
+            desenhando =false
+        })
+
+
+        canvas.addEventListener("mousemove", (evento)=>{
+            mouseEvent=evento
+            if(desenhando){
+                ctx.lineTo(evento.offsetX,evento.offsetY)
+                ctx.stroke();
+            }
+        })
+
+
+    </script>
+</body>
+</html>

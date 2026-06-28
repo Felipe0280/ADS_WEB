@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de palíndromos</title>
+</head>
+<body>
+    <label for="palavra">Digite uma palavra:</label>
+    <input type="text" id="palavra">
+    <button id="btnVerificar">Verificar</button>
+
+    <p id="resultado"></p>
+
+
+    <script>
+        document.getElementById("btnVerificar").addEventListener("click", () => {
+                let p = document.getElementById("palavra").value;
+                let palavra = document.getElementById("palavra").value.replaceAll(" ","");
+                let r = document.getElementById("resultado");
+
+        let Palindromo = true;
+                for (let i = 0; i < palavra.length / 2; i++) {
+                    if (palavra[i] !== palavra[palavra.length - 1 - i]) {
+                        Palindromo = false;
+                        break;
+                    }
+                }
+
+                if (Palindromo) {
+                    r.innerText = `"${p}" é um palíndromo!`;
+                } else {
+                    r.innerText = `"${p}" não é um palíndromo.`;
+                }
+            });
+    </script>
+</body>
+</html>

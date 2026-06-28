@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos de Variáveis e Operadores</title>
+</head>
+<body>
+    <button id="btn">Clique aqui</button>
+
+    <p id="pTXT"></p>
+    <p id="pNUMBR"></p>
+    <p id="pBOOL"></p>
+    <p id="pINDEF"></p>
+    <p id="pNULL"></p>
+    <p id="pOBJ"></p>
+    <p id="pARRAY"></p>
+
+    <h1 id="result"></h1>
+    <p id="r1"></p>
+    <p id="r2"></p>
+    <p id="r3"></p>
+    <p id="r4"></p>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", ()=> {
+    
+            let texto = "Bom dia";
+            let numero = 1;
+            let bool = true;
+            let indefinido = undefined;
+            let nulo = null;
+            let obj = {numero: "17" };
+            let array = [1, 2, 3];
+
+            document.getElementById("pTXT").innerText = typeof(texto);
+            document.getElementById("pNUMBR").innerText = typeof(numero);
+            document.getElementById("pBOOL").innerText = typeof(bool);
+            document.getElementById("pINDEF").innerText = typeof(indefinido);
+            document.getElementById("pNULL").innerText = typeof(nulo);
+            document.getElementById("pOBJ").innerText = typeof(obj);
+            document.getElementById("pARRAY").innerText = typeof(array);
+
+            let r1 = texto + numero;
+            let r2 = bool + numero;
+            let r3 = texto + bool;
+            let r4 = numero + nulo;
+
+            console.log("texto + numero:", r1);       
+            console.log("bool + numero:", r2);      
+            console.log("texto + bool:", r3);         
+            console.log("numero + nulo:", r4);       
+            document.getElementById("result").innerText = "Resultados";
+            document.getElementById("r1").innerText = `Bom dia + 1 = "${r1}". O numero se tranforma em string`;
+            document.getElementById("r2").innerText = `true + 1 = ${r2} → true se torna 1 e soma ao 1 de numero.`;
+            document.getElementById("r3").innerText = `Bom dia + true = ${r3} → o true se torna texto e concatena ao bom dia.`;
+            document.getElementById("r4").innerText = `1 + nulo = ${r4} → nulo vira 0 na soma com número 1.`;
+        });
+    </script>
+</body>
+</html>

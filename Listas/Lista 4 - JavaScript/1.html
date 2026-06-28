@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O que é JavaScript?</title>
+</head>
+
+<body>
+    <h1 id="tituloPagina">O que é JavaScript?</h1>
+    <p id="paragrafo">A. A motivação para a criação do JavaScript foi a necessidade de dinamismo e interatividade nas
+        paginas web <br>
+        B. No navegador os codigos são executados pelo computador do usuario, enquanto no servidor os codigos são
+        executados no servidor que hospeda a aplicação, escondendo assim o codigo do acesso do cliente<br>
+        C. E um ambiente controlado para executar plugin com segurança <br>
+        D. O document é o objeto que representa o arquivo html, o console é a parte que permite fazer modificações
+        temporarias e resultados na propria web, alert são mensagem que aparecem na tela para o usuario bloqueando a
+        pagina ate a sua confirmação<br>
+    </p>
+
+    <p id="hora"></p>
+
+    <script>
+        console.log("oi");
+        alert("Opa");
+        let h = new Date();
+        document.getElementById("hora").innerHTML = "A hora atual é: " + h.toLocaleTimeString();
+    </script>
+</body>
+
+</html>
