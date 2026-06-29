@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>OMDb</title>
+    <style>
+        body{
+            background-color: rgb(102,126, 234);
+        }
+        .resultado{
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background-color: lightblue;
+        }
+    </style>
 </head>
 <body>
     <h1>Buscar Filmes</h1>
     <label for="busca"></label>
     <input type="text" id="busca">
     <button id="button">Buscar</button>
+    <p></p>
 
     <div class="resultado"></div>
 
@@ -30,10 +43,10 @@
         function exibirFilme(filmes){
             let htmlfilme = "";
             filmes.forEach((filme) => {
-                htmlfilme+= `<div class="filme">
+                htmlfilme+= `<div class="filme" style=" width: 200px; heigth: 400px; display: grid; grid-template-rows: 90px 50px 300px;">
                     <h2>${filme.Title}</h2>
-                    <img src="${filme.Poster}" alt="${filme.Title}">
                     <p>${filme.Year}</p>
+                    <img src="${filme.Poster}" alt="${filme.Title}" style=" width: 200px; heigth: 300px;">
                         </div>`;
             })
                 
