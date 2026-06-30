@@ -20,7 +20,7 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
-    .tela {
+    #tela {
       background-color: #333;
       color: #fff;
       font-size: 50px;
@@ -30,7 +30,7 @@
 
     .botoes {
       display: grid;
-      grid-template-columns: repeat(4, 70px);
+      grid-template-columns: 70px 70px 70px 70px 70px;
     }
 
     button {
@@ -42,34 +42,37 @@
     }
 
     button.operador {
-      background-color: #eee;
+      background-color: #96b2d3;
     }
 
-    button.igual {
+    button#igual {
       background-color: blue;
       color: white;
-      grid-row: span 3;
+      grid-row: 2/5;
+      grid-column: 4/6;
     }
 
-    button.ac {
+    button#ac {
       background-color: #fd362f;
       color: white;
+      grid-column: 4/6;
     }
   </style>
 </head>
 <body>
   <div class="calculadora">
-    <div class="tela" id="tela">0</div>
+    <div id="tela">0</div>
     <div class="botoes">
       <button class="operador" onclick="add('+')">+</button>
       <button class="operador" onclick="add('-')">-</button>
       <button class="operador" onclick="add('x')">×</button>
       <button class="operador" onclick="add('÷')">÷</button>
+      <button class="operador" onclick="add('^')">^</button>
 
       <button onclick="add('7')">7</button>
       <button onclick="add('8')">8</button>
       <button onclick="add('9')">9</button>
-      <button class="igual" onclick="calcular()">=</button>
+      <button id="igual" onclick="calc()">=</button>
 
       <button onclick="add('4')">4</button>
       <button onclick="add('5')">5</button>
@@ -80,37 +83,48 @@
       <button onclick="add('3')">3</button>
 
       <button onclick="add('0')">0</button>
-      <button onclick="add('.')">.</button>
-      <button class="operador" onclick="add('^')">^</button>
-      <button class="ac" onclick="limpar()">AC</button>
+      <button onclick="add(',')">,</button>
+      <button></button>
+      <button id="ac" onclick="limpar()">AC</button>
     </div>
   </div>
 
   <script>
-    let expressao = '';
+    let expressao = '0';
     function add(valor) {
-        expressao += valor;
-        atualizarTela();
+        if(expressao === '0' || expressao === '0,'){
+          if(expressao === '0,' && valor != ',' || expressao != '0,' && valor === ','){
+            expressao += valor;
+            updTela();
+          }else{
+            expressao = valor;
+            updTela();
+          }
+        }else{
+          expressao += valor;
+          updTela();
+        }
+        
     }
 
     function limpar() {
-      expressao = '';
-      atualizarTela('0');
+      expressao = '0';
+      updTela('0');
     }
 
-    function calcular() {
+    function calc() {
       try {
-        let exCerto = expressao.replaceAll("x", "*").replaceAll("÷", "/").replaceAll("^", "**");
+        let exCerto = expressao.replaceAll("x", "*").replaceAll("÷", "/").replaceAll("^", "**").replaceAll(",", ".");
         let resultado = eval(exCerto);
-        expressao = resultado.toString();
-        atualizarTela();
+        expressao = resultado.toString().replaceAll(".", ",");
+        updTela();
       } catch (e) {
-        atualizarTela('Error');
-        expressao = '';
+        updTela('Error');
+        expressao = '0';
       }
     }
 
-    function atualizarTela(valor) {
+    function updTela(valor) {
       document.getElementById('tela').innerHTML = valor || expressao;
     }
   </script>

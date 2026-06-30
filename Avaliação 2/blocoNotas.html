@@ -72,7 +72,6 @@
                     iSelecionado = i;
                     titulo.value = textos[i].titulo;
                     texto.value = textos[i].nota;
-                    notaExistente = true;
                 });
                 lista.appendChild(li);
             }
@@ -83,11 +82,11 @@
             if(titulo.value === "" && texto.value === ""){
                 alert("Digite um titulo e/ou conteúdo para salvar a nota");
             }else{
-                if(notaExistente){
+                if(iSelecionado != -1){
                     textos[iSelecionado].titulo = titulo.value;
                     textos[iSelecionado].nota = texto.value;
                     localStorage.setItem("Notas", JSON.stringify(textos ));
-                    notaExistente = false;
+                    iSelecionado = -1;
 
                     document.getElementById("titulo").value = "";
                     document.getElementById("texto").value = "";
@@ -107,7 +106,7 @@
         });
 
         bExcluir.addEventListener("click", ()=>{
-            if(titulo.value === "" && texto.value === "" || iSelecionado === -1){
+            if(iSelecionado === -1){
                 alert("Selecione uma nota para excluir");
             }else{
                 let r = confirm("Deseja realmente excluir esta nota?");
