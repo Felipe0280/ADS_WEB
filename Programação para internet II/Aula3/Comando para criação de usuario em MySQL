@@ -1,0 +1,13 @@
+CREATE USER IF NOT EXISTS '1'@'2' IDENTIFIED BY '3';
+GRANT ALL PRIVILEGES ON 4.* TO '1'@'2';
+
+Sendo: 
+1- Nome do user
+2- Nome do servidor
+3- senha do user
+4- Nome do banco
+
+Obs: 
+GRANT ALL PRIVILEGES ON 4.* TO = Garantia de privilégios ao user dscrito pós TO  
+em casos de garantir privilégios restristos pode-se alterar revogando (REVOKE), 
+ou GRANT privilégio dados (exemplo: SELECT, INSERT, UPDATE, DELETE, DROP);
